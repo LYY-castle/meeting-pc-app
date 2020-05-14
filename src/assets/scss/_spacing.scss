@@ -1,0 +1,36 @@
+$sp-step-sizes: 3, 5, 6, 8;
+
+@for $i from 0 through 9 {
+  @each $sp-step-size in $sp-step-sizes {
+    .m-#{$i * 10 + $sp-step-size} {
+      margin: $i * 10px + $sp-step-size !important;
+    }
+    .m-t-#{$i * 10 + $sp-step-size} {
+      margin-top: $i * 10px + $sp-step-size !important;
+    }
+    .m-b-#{$i * 10 + $sp-step-size} {
+      margin-bottom: $i * 10px + $sp-step-size !important;
+    }
+    .m-l-#{$i * 10 + $sp-step-size} {
+      margin-left: $i * 10px + $sp-step-size !important;
+    }
+    .m-r-#{$i * 10 + $sp-step-size} {
+      margin-right: $i * 10px + $sp-step-size !important;
+    }
+    .p-#{$i * 10 + $sp-step-size} {
+      padding: $i * 10px + $sp-step-size !important;
+    }
+    .p-t-#{$i * 10 + $sp-step-size} {
+      padding-top: $i * 10px + $sp-step-size !important;
+    }
+    .p-b-#{$i * 10 + $sp-step-size} {
+      padding-bottom: $i * 10px + $sp-step-size !important;
+    }
+    .p-l-#{$i * 10 + $sp-step-size} {
+      padding-left: $i * 10px + $sp-step-size !important;
+    }
+    .p-r-#{$i * 10 + $sp-step-size} {
+      padding-right: $i * 10px + $sp-step-size !important;
+    }
+  }
+}
