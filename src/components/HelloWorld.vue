@@ -2,9 +2,11 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
 
-    <router-link :to="{ path: 'hello2' }">
-      切到到 /hello2
+    <router-link :to="{ name: 'world' }">
+      切到到 /world
     </router-link>
+
+    <a-divider />
 
     <div>
       <input class="m-r-5" v-model="value" />
@@ -13,10 +15,10 @@
       <button @click="getValue">show</button>
     </div>
 
-    <div>
+    <div class="m-t-5">
       <span class="m-r-5">counter: {{ counter }}</span>
       <button class="m-r-5" @click="increaseCounter">increase</button>
-      <button @click="decreaseCounter">decrease</button>
+      <button class="m-r-5" @click="decreaseCounter">decrease</button>
       <button @click="initCounter">init</button>
     </div>
   </div>
@@ -64,19 +66,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
 a {
   color: #42b983;
 }

@@ -2,7 +2,7 @@
   <div>
     This is helloworld 2.
 
-    <router-link :to="{ path: 'hello' }">
+    <router-link :to="{ name: 'hello' }">
       切到到 /hello
     </router-link>
   </div>
