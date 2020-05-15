@@ -1558,12 +1558,12 @@ anymatch@~3.1.1:
 
 app-builder-bin@3.4.3:
   version "3.4.3"
-  resolved "https://registry.npm.taobao.org/app-builder-bin/download/app-builder-bin-3.4.3.tgz#58a74193eb882f029be6b7f0cd3f0c6805927a6b"
+  resolved "https://registry.npm.taobao.org/app-builder-bin/download/app-builder-bin-3.4.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fapp-builder-bin%2Fdownload%2Fapp-builder-bin-3.4.3.tgz#58a74193eb882f029be6b7f0cd3f0c6805927a6b"
   integrity sha1-WKdBk+uILwKb5rfwzT8MaAWSems=
 
 app-builder-lib@21.2.0, app-builder-lib@~21.2.0:
   version "21.2.0"
-  resolved "https://registry.npm.taobao.org/app-builder-lib/download/app-builder-lib-21.2.0.tgz#fa1d1604601431e2c3476857e9b9b61d33ad26cc"
+  resolved "https://registry.npm.taobao.org/app-builder-lib/download/app-builder-lib-21.2.0.tgz?cache=0&sync_timestamp=1589451122156&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fapp-builder-lib%2Fdownload%2Fapp-builder-lib-21.2.0.tgz#fa1d1604601431e2c3476857e9b9b61d33ad26cc"
   integrity sha1-+h0WBGAUMeLDR2hX6bm2HTOtJsw=
   dependencies:
     "7zip-bin" "~5.0.3"
@@ -2339,9 +2339,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001039, caniuse-lite@^1.0.30001043:
-  version "1.0.30001058"
-  resolved "https://registry.npm.taobao.org/caniuse-lite/download/caniuse-lite-1.0.30001058.tgz#9f8a318389e28f060272274ac93a661d17f8bf0d"
-  integrity sha1-n4oxg4nijwYCcidKyTpmHRf4vw0=
+  version "1.0.30001059"
+  resolved "https://registry.npm.taobao.org/caniuse-lite/download/caniuse-lite-1.0.30001059.tgz#7bff0613d94b6ea41cb5c864c966d340f8ae6d34"
+  integrity sha1-e/8GE9lLbqQctchkyWbTQPiubTQ=
 
 case-sensitive-paths-webpack-plugin@^2.3.0:
   version "2.3.0"
@@ -3251,7 +3251,7 @@ decode-uri-component@^0.2.0:
 
 decompress-response@^3.3.0:
   version "3.3.0"
-  resolved "https://registry.npm.taobao.org/decompress-response/download/decompress-response-3.3.0.tgz#80a4dd323748384bfa248083622aedec982adff3"
+  resolved "https://registry.npm.taobao.org/decompress-response/download/decompress-response-3.3.0.tgz?cache=0&sync_timestamp=1589512178920&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdecompress-response%2Fdownload%2Fdecompress-response-3.3.0.tgz#80a4dd323748384bfa248083622aedec982adff3"
   integrity sha1-gKTdMjdIOEv6JICDYirt7Jgq3/M=
   dependencies:
     mimic-response "^1.0.0"
@@ -3650,7 +3650,7 @@ electron-download@^4.1.1:
 
 electron-publish@21.2.0:
   version "21.2.0"
-  resolved "https://registry.npm.taobao.org/electron-publish/download/electron-publish-21.2.0.tgz?cache=0&sync_timestamp=1588151853670&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Felectron-publish%2Fdownload%2Felectron-publish-21.2.0.tgz#cc225cb46aa62e74b899f2f7299b396c9802387d"
+  resolved "https://registry.npm.taobao.org/electron-publish/download/electron-publish-21.2.0.tgz?cache=0&sync_timestamp=1589451118540&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Felectron-publish%2Fdownload%2Felectron-publish-21.2.0.tgz#cc225cb46aa62e74b899f2f7299b396c9802387d"
   integrity sha1-zCJctGqmLnS4mfL3KZs5bJgCOH0=
   dependencies:
     bluebird-lst "^1.0.9"
@@ -3683,7 +3683,7 @@ electron-to-chromium@^1.3.413:
 
 electron@^8.2.5:
   version "8.2.5"
-  resolved "https://registry.npm.taobao.org/electron/download/electron-8.2.5.tgz#ae3cb23d5517b2189fd35298e487198d65d1a291"
+  resolved "https://registry.npm.taobao.org/electron/download/electron-8.2.5.tgz?cache=0&sync_timestamp=1589509300228&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Felectron%2Fdownload%2Felectron-8.2.5.tgz#ae3cb23d5517b2189fd35298e487198d65d1a291"
   integrity sha1-rjyyPVUXshif01KY5IcZjWXRopE=
   dependencies:
     "@electron/get" "^1.0.1"
@@ -4648,7 +4648,7 @@ globals@^12.1.0:
 
 globalthis@^1.0.1:
   version "1.0.1"
-  resolved "https://registry.npm.taobao.org/globalthis/download/globalthis-1.0.1.tgz?cache=0&sync_timestamp=1577757201256&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fglobalthis%2Fdownload%2Fglobalthis-1.0.1.tgz#40116f5d9c071f9e8fb0037654df1ab3a83b7ef9"
+  resolved "https://registry.npm.taobao.org/globalthis/download/globalthis-1.0.1.tgz#40116f5d9c071f9e8fb0037654df1ab3a83b7ef9"
   integrity sha1-QBFvXZwHH56PsAN2VN8as6g7fvk=
   dependencies:
     define-properties "^1.1.3"

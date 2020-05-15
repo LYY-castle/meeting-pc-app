@@ -2,11 +2,11 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
 
-    <!-- <router-link :to="{ name: 'world' }">
+    <router-link :to="{ name: 'world' }">
       切到到 /world
-    </router-link> -->
+    </router-link>
 
-    <!-- <a-divider /> -->
+    <a-divider />
 
     <div>
       <input class="m-r-5" v-model="value" />
