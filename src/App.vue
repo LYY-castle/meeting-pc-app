@@ -1,9 +1,6 @@
 <template>
   <a-config-provider :locale="locale">
     <div id="app">
-
-      <hello-world msg="Welcome to Your Vue.js App"/>
-
       <router-view />
     </div>
   </a-config-provider>
@@ -12,13 +9,8 @@
 <script>
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 
-import HelloWorld from '@/components/HelloWorld'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  },
   data() {
     return {
       locale: zhCN
