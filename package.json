@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "serve": "cross-env mode=dev vue-cli-service serve",
     "electron:build": "cross-env mode=dev vue-cli-service electron:build",
     "electron:build:prod": "cross-env mode=prod vue-cli-service electron:build",
     "electron:serve": "cross-env mode=dev vue-cli-service electron:serve",

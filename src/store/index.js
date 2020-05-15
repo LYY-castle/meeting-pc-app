@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { createPersistedState } from 'vuex-electron'
+
 import counter from './modules/counter'
 
 Vue.use(Vuex)
