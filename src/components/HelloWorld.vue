@@ -28,8 +28,6 @@
 import store from '@/utils/electron-store'
 import { mapState } from 'vuex'
 
-console.log('process.env.CTI_HOST =', process.env.CTI_HOST)
-
 export default {
   name: 'HelloWorld',
   props: {
