@@ -1,4 +1,5 @@
 const path = require('path')
+const os = require('os')
 
 const keys = require('lodash.keys')
 
@@ -9,6 +10,21 @@ function resolve(dir) {
 }
 
 module.exports = {
+  devServer: {
+    // development server port 3000
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: envConfig[process.env.mode].BASE_API, // 请求本地需要后台项目
+        ws: false,
+        changeOrigin: true,
+        pathRewrite: {
+          '/api': '' // 默认所有请求都加了 api 前缀, 需要去掉
+        }
+      }
+    }
+  },
+  parallel: os.cpus().length > 1,
   chainWebpack: config => {
     config.resolve.alias.set('@', resolve('src'))
 

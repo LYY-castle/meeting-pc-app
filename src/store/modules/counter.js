@@ -6,7 +6,7 @@ const counter = {
   state: defaultState,
   mutations: {
     INIT(state) {
-      for (let k in defaultState ) {
+      for (const k in defaultState ) {
         state[k] = defaultState[k]
       }
     },
