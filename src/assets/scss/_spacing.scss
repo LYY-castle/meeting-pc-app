@@ -1,4 +1,4 @@
-$sp-step-sizes: 3, 5, 6, 8;
+$sp-step-sizes: 0, 2, 5, 6, 8;
 
 @for $i from 0 through 9 {
   @each $sp-step-size in $sp-step-sizes {

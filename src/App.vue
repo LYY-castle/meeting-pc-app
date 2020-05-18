@@ -1,6 +1,6 @@
 <template>
   <a-config-provider :locale="locale">
-    <div id="app">
+    <div id="app" ref="app">
       <router-view />
     </div>
   </a-config-provider>
@@ -11,9 +11,27 @@ import zhCN from 'ant-design-vue/es/locale/zh_CN'
 
 export default {
   name: 'App',
+
   data() {
     return {
-      locale: zhCN
+      locale: zhCN,
+      height: {
+        height: ''
+      }
+    }
+  },
+  methods: {
+    resetAppHeight() {
+      this.$nextTick(() => {
+        this.$refs.app.style.height = `${document.documentElement.clientHeight}px`
+      })
+    }
+  },
+  mounted() {
+    this.resetAppHeight()
+
+    window.onresize = () => {
+      this.resetAppHeight()
     }
   }
 }
@@ -28,4 +46,10 @@ export default {
 
 @import '~@/assets/common/antd.scss';
 @import '~@/assets/common/reset.scss';
+.mainContent {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 </style>
