@@ -31,7 +31,7 @@
         </a-col>
         <a-col>
           <a-form-model-item>
-            <a-button type="primary" block class="login">登录</a-button>
+            <a-button type="primary" block @click="login">登录</a-button>
           </a-form-model-item>
         </a-col>
         <a-col>
