@@ -30,7 +30,7 @@
           </a-form-model-item>
         </a-col>
         <a-col>
-          <a-form-model-item>
+          <a-form-model-item class="m-b-10">
             <a-button type="primary" block @click="login">登录</a-button>
           </a-form-model-item>
         </a-col>

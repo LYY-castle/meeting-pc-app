@@ -37,13 +37,13 @@
           </a-form-model-item>
         </a-col>
         <a-col>
-          <a-form-model-item>
+          <a-form-model-item class="m-b-5">
             <a-button type="primary" block>注册</a-button>
           </a-form-model-item>
         </a-col>
         <a-col align="right">
           <span>已有账号？</span>
-          <a-button type="link" @click="Login">马上登陆</a-button>
+          <a-button type="link" @click="Login">马上登录</a-button>
         </a-col>
       </a-row>
     </a-form-model>
