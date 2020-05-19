@@ -12,7 +12,7 @@
             <span>获取验证码</span>
           </div>
           <div slot="addonAfter" v-if="!disabledCode">
-            <a-statistic-countdown :value="deadline" @finish="onFinish" format="ss" />
+            <a-statistic-countdown :value="deadline" @finish="onFinish" format="s 秒后重新发送" />
           </div>
         </a-input>
       </a-form-model-item>
@@ -29,13 +29,13 @@
         <a-input v-model="form.validatePassword" placeholder="请输入密码" type="password" />
       </a-form-model-item>
 
-      <a-form-model-item>
+      <a-form-model-item class="m-b-5">
         <a-button type="primary" block @click="submitForm('form')">注册</a-button>
       </a-form-model-item>
 
       <a-col align="right">
         <span>已有账号？</span>
-        <a-button type="link" @click="Login">马上登陆</a-button>
+        <a-button type="link" @click="Login">马上登录</a-button>
       </a-col>
     </a-form-model>
   </div>
@@ -175,16 +175,19 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-.ant-statistic-content {
+
+<style lang="scss" scoped>
+::v-deep .ant-statistic-content {
   font-size: 12px !important;
 }
-</style>
-<style lang="scss" scoped>
+
 .text {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  cursor: default;
+
   .leftText {
     font-size: 20px;
     color: rgba(0, 0, 0, 1);
@@ -192,6 +195,10 @@ export default {
   .rightText {
     font-size: 12px;
     color: rgba(0, 0, 0, 0.5);
+  }
+
+  .rightText:hover {
+    color: rgba(0, 0, 0, 0.8) !important;
   }
 }
 </style>

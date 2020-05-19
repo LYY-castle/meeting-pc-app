@@ -5,7 +5,7 @@
       <div>睿云会议</div>
       <div>Wise2c Meeting</div>
       <a-button type="primary" block class="m-t-80" @click="joinMeeting">加入会议</a-button>
-      <a-button block class="m-t-15" @click="loginOrRegister">登录/注册</a-button>
+      <a-button block class="m-t-15" @click="loginOrRegister">登录 / 注册</a-button>
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
   methods: {
     // 加入会议
     joinMeeting() {
-      window.open(window.location.href + 'join-meeting', '_blank', 'resizable=no,width=375')
+      window.open(window.location.href + 'join-meeting', '_blank', 'resizable=no, width=375')
     },
 
     // 登录/注册
