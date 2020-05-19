@@ -11,12 +11,12 @@
 
         <a-col>
           <a-form-model-item label="验证码">
-            <a-input v-model="form.pwd" placeholder="请输入验证码" :disabled="disabledCode">
-              <div slot="addonAfter" @click="getPhoneCode" v-if="disabledCode">
+            <a-input v-model="form.pwd" placeholder="请输入验证码" :disabled="!disabledCode">
+              <div slot="addonAfter" @click="getPhoneCode" v-if="!disabledCode">
                 <span>获取验证码</span>
               </div>
-              <div slot="addonAfter" v-if="!disabledCode">
-                <a-statistic-countdown :value="deadline" @finish="onFinish" format="ss" />
+              <div slot="addonAfter" v-if="disabledCode">
+                <a-statistic-countdown :value="deadline" @finish="onFinish" format="s 秒后重新发送" />
               </div>
             </a-input>
           </a-form-model-item>
@@ -58,7 +58,7 @@ export default {
     return {
       pageTitle: '新用户注册',
       deadline: 0,
-      disabledCode: true,
+      disabledCode: false,
       form: {
         layout: 'vertical'
       }
@@ -71,10 +71,10 @@ export default {
     },
     getPhoneCode() {
       this.deadline = Date.now() + 60 * 1000
-      this.disabledCode = false
+      this.disabledCode = true
     },
     onFinish() {
-      this.disabledCode = true
+      this.disabledCode = false
     }
   },
   components: {
@@ -82,12 +82,12 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-.ant-statistic-content {
+
+<style lang="scss" scoped>
+::v-deep .ant-statistic-content {
   font-size: 12px !important;
 }
-</style>
-<style lang="scss" scoped>
+
 .text {
   display: flex;
   justify-content: space-between;
