@@ -1,6 +1,8 @@
 import { remote } from 'electron'
 import isFunction from 'lodash.isfunction'
 
+const isDevelopment = process.env.NODE_ENV !== 'production'
+
 export function createChildWindow({
   title = '睿云会议',
   url = '',
@@ -39,7 +41,8 @@ export function createChildWindow({
     }
   })
 
-  newWin.loadURL(`${window.location.origin}/#${url}`)
+  // eslint-disable-next-line no-undef
+  newWin.loadURL(isDevelopment ? `${window.location.origin}/#${url}` : `app://./index.html/#${url}`)
 
   newWin.once('ready-to-show', () => {
     newWin.show()
