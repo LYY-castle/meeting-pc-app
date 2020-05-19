@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Modal, notification } from 'ant-design-vue'
 
 import store from '@/store'
-import { ACCESS_TOKEN, OUTER_ACCESS_TOKEN } from '@/store/mutation-types'
+import { ACCESS_TOKEN } from '@/store/mutation-types'
 
 import constantCfg from '@/config/constant.config'
 
@@ -15,22 +15,12 @@ const service = axios.create({
   timeout: constantCfg.API_TIMEOUT // 请求超时时间
 })
 
-const internalService = axios.create({
-  baseURL: process.env.BASE_API_URL, // api base_url
-  timeout: constantCfg.API_TIMEOUT // 请求超时时间
-})
-
-const injectServiceInterceptors = (service, isInternal = false) => {
+const injectServiceInterceptors = (service) => {
   // request interceptor
   service.interceptors.request.use(
     config => {
-      if (isInternal) {
-        const outerToken = Vue.ls.get(OUTER_ACCESS_TOKEN)
-        outerToken && (config.headers[ACCESS_TOKEN] = Vue.ls.get(OUTER_ACCESS_TOKEN))
-      } else {
-        const token = Vue.ls.get(ACCESS_TOKEN)
-        token && (config.headers[ACCESS_TOKEN] = token)
-      }
+      const token = Vue.ls.get(ACCESS_TOKEN)
+      token && (config.headers[ACCESS_TOKEN] = token)
 
       if (config.method === 'get') {
         config.params = {
@@ -48,10 +38,7 @@ const injectServiceInterceptors = (service, isInternal = false) => {
 
   // response interceptor
   service.interceptors.response.use(response => {
-    if (isInternal && response.headers[OUTER_ACCESS_TOKEN]) {
-      Vue.ls.set(OUTER_ACCESS_TOKEN, response.headers[OUTER_ACCESS_TOKEN], constantCfg.TOKEN_EXPIRE_TIME)
-      store.commit('SET_INTERNAL_TOKEN', response.headers[OUTER_ACCESS_TOKEN])
-    } else if (!isInternal && response.headers[ACCESS_TOKEN]) {
+    if (response.headers[ACCESS_TOKEN]) {
       Vue.ls.set(ACCESS_TOKEN, response.headers[ACCESS_TOKEN], constantCfg.TOKEN_EXPIRE_TIME)
       store.commit('SET_TOKEN', response.headers[ACCESS_TOKEN])
     }
@@ -75,13 +62,7 @@ const injectServiceInterceptors = (service, isInternal = false) => {
           })
           break
         case 401:
-          if (isInternal) {
-            notification.error({
-              message: '系统提示',
-              description: '登录已过期，请刷新页面',
-              duration: 4
-            })
-          } else if (error.response.config.url.lastIndexOf('/auth/logout') === -1 && !tokenExpiredErrorShowed) {
+          if (error.response.config.url.lastIndexOf('/auth/logout') === -1 && !tokenExpiredErrorShowed) {
             tokenExpiredErrorShowed = true
 
             Modal.error({
@@ -140,6 +121,5 @@ const injectServiceInterceptors = (service, isInternal = false) => {
 }
 
 injectServiceInterceptors(service)
-injectServiceInterceptors(internalService, true)
 
-export { service as axios, internalService as internalAxios }
+export { service as axios }
