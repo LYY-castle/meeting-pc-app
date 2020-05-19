@@ -1,7 +1,7 @@
 import { remote } from 'electron'
 import isFunction from 'lodash.isfunction'
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
+const isDevelopment = process.env.NODE_ENV === 'development'
 
 export function createChildWindow({
   title = '睿云会议',
@@ -37,7 +37,8 @@ export function createChildWindow({
     parent: remote.getCurrentWindow(),
     webPreferences: {
       webSecurity: false,
-      nodeIntegration: true
+      nodeIntegration: true,
+      devTools: isDevelopment ? true : false
     }
   })
 
