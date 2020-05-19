@@ -1,7 +1,7 @@
 module.exports = {
   dev: {
     mode: 'dev',
-    BASE_API: 'http://dev.hkjindian.com:8020'
+    BASE_API: 'http://dev.hkjindian.com:18600'
   },
   sit: {
     mode: 'sit',

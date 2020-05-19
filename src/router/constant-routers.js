@@ -28,15 +28,20 @@ export default [
     component: () => import(/* webpackChunkName: "join-meeting" */ '@/views/user/JoinMeeting')
   },
   {
-    name: 'hello',
-    path: '/hello',
-    component: () => import(/* webpackChunkName: "hello" */ '@/components/HelloWorld')
+    name: 'ScheduledMeeting',
+    path: '/scheduled-meeting',
+    component: () => import(/* webpackChunkName: "join-meeting" */ '@/views/user/ScheduledMeeting')
   },
-  {
-    name: 'world',
-    path: '/world',
-    component: () => import(/* webpackChunkName: "hello" */ '@/components/HelloWorld2')
-  },
+  // {
+  //   name: 'hello',
+  //   path: '/hello',
+  //   component: () => import(/* webpackChunkName: "hello" */ '@/components/HelloWorld')
+  // },
+  // {
+  //   name: 'world',
+  //   path: '/world',
+  //   component: () => import(/* webpackChunkName: "hello" */ '@/components/HelloWorld2')
+  // },
   {
     name: 'Home',
     path: '/home',

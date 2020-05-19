@@ -47,6 +47,9 @@ export default {
 @import '~@/assets/common/antd.scss';
 @import '~@/assets/common/reset.scss';
 .mainContent {
+  box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: scroll;
   width: 100%;
   height: 100%;
   margin: 0 auto;

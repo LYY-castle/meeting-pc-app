@@ -23,8 +23,7 @@ export default {
   methods: {
     // 加入会议
     joinMeeting() {
-      this.$router.push('/join-meeting')
-      // window.open(window.location.origin + '/join-meeting')
+      window.open(window.location.href + 'join-meeting', '_blank', 'resizable=no,width=375')
     },
 
     // 登录/注册
