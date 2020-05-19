@@ -92,6 +92,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  cursor: default;
+
   .leftText {
     font-size: 20px;
     color: rgba(0, 0, 0, 1);
@@ -99,6 +102,10 @@ export default {
   .rightText {
     font-size: 12px;
     color: rgba(0, 0, 0, 0.5);
+  }
+
+  .rightText:hover {
+    color: rgba(0, 0, 0, 0.8) !important;
   }
 }
 </style>

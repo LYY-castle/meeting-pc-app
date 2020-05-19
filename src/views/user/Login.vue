@@ -114,10 +114,10 @@ export default {
   .rightText {
     font-size: 12px;
     color: rgba(0, 0, 0, 0.5);
+  }
 
-    :hover {
-      color: rgba(0, 0, 0, 0.8) !important;
-    }
+  .rightText:hover {
+    color: rgba(0, 0, 0, 0.8) !important;
   }
 }
 </style>
