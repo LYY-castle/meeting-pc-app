@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { createChildWindow } from '@/utils/window'
+
 import LOGO from '@/assets/images/wise2c.png'
 
 export default {
@@ -23,7 +25,10 @@ export default {
   methods: {
     // 加入会议
     joinMeeting() {
-      window.open(window.location.href + 'join-meeting', '_blank', 'resizable=no, width=375')
+      createChildWindow({
+        width: 380,
+        url: '/join-meeting'
+      })
     },
 
     // 登录/注册
