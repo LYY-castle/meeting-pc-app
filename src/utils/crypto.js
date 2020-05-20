@@ -3,6 +3,11 @@ import CryptoJS from 'crypto-js/crypto-js'
 import constantCfg from '@/config/constant.config'
 
 class Crypto {
+  /**
+   * 注意: aes 密钥与向量长度需是 8 的倍数, 否则会出现解密失败的问题.
+   * @param {key} param 密钥.
+   * @param {iv} param 向量.
+   */
   constructor(param = { key: constantCfg.crypto.key, iv: constantCfg.crypto.iv }) {
     this.key = param.key
     this.iv = param.iv

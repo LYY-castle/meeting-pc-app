@@ -2,8 +2,13 @@
   <div class="LoginContent">
     <div class="centerContetn">
       <!-- <a-avatar :size="50" :src="LOGO" /> -->
-      <img :src="LOGO" alt="" width="100" />
-      <div class="logoText"><span>睿</span><span>云</span><span>会</span><span>议</span></div>
+      <img :src="LOGO" alt width="100" />
+      <div class="logoText">
+        <span>睿</span>
+        <span>云</span>
+        <span>会</span>
+        <span>议</span>
+      </div>
       <div>Wise2c Meeting</div>
       <a-button type="primary" block class="m-t-80" @click="joinMeeting">加入会议</a-button>
       <a-button block class="m-t-15" @click="loginOrRegister">登录 / 注册</a-button>
@@ -13,7 +18,7 @@
 
 <script>
 import LOGO from '@/assets/images/wise2c.svg'
-
+import { createChildWindow } from '@/utils/window'
 export default {
   name: 'Login',
   data() {
@@ -24,7 +29,10 @@ export default {
   methods: {
     // 加入会议
     joinMeeting() {
-      window.open(window.location.origin + '/#/join-meeting', '_blank', 'resizable=no, width=375')
+      createChildWindow({
+        width: 380,
+        url: '/join-meeting'
+      })
     },
 
     // 登录/注册

@@ -3,7 +3,7 @@
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol /* installVueDevtools */ } from 'vue-cli-plugin-electron-builder/lib'
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
+const isDevelopment = process.env.NODE_ENV === 'development'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -15,11 +15,16 @@ protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: tru
 function createWindow() {
   // Create the browser window.
   mainWin = new BrowserWindow({
+    title: '睿云会议',
     width: 400,
     height: 700,
+    resizable: isDevelopment ? true : false,
+    maximizable: false,
+    fullscreenable: false,
     webPreferences: {
       webSecurity: false,
-      nodeIntegration: true
+      nodeIntegration: true,
+      devTools: isDevelopment ? true : false
     },
     // eslint-disable-next-line no-undef
     icon: `${__static}/app.ico`
@@ -59,7 +64,7 @@ app.on('activate', () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', async () => {
+app.on('ready', async() => {
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools
     // Devtools extensions are broken in Electron 6.0.0 and greater

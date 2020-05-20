@@ -22,8 +22,13 @@
 </template>
 
 <script>
+import { createChildWindow } from '@/utils/window'
 import { mapState } from 'vuex'
+<<<<<<< HEAD
 import { request } from '@/api'
+=======
+
+>>>>>>> 73a71db694f5fabd3a425b496a493a7c50ad77f2
 export default {
   name: 'Home',
   data() {
@@ -55,6 +60,7 @@ export default {
     },
     event(index) {
       if (index === 1) {
+<<<<<<< HEAD
         window.open(window.location.origin + '/#/join-meeting', '_blank', 'resizable=no,width=375')
         // this.$router.push('/join-meeting')
       } else if (index === 2) {
@@ -63,6 +69,22 @@ export default {
       } else if (index === 3) {
         window.open(window.location.origin + '/#/scheduled-meeting', '_blank', 'resizable=no,width=375')
         // this.$router.push('/scheduled-meeting')
+=======
+        createChildWindow({
+          width: 380,
+          url: '/join-meeting'
+        })
+      } else if (index === 2) {
+        createChildWindow({
+          width: 380,
+          url: '/scheduled-meeting'
+        })
+      } else if (index === 3) {
+        createChildWindow({
+          width: 380,
+          url: '/scheduled-meeting'
+        })
+>>>>>>> 73a71db694f5fabd3a425b496a493a7c50ad77f2
       }
     }
   }
