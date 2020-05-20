@@ -18,6 +18,9 @@ function createWindow() {
     title: '睿云会议',
     width: 400,
     height: 700,
+    resizable: isDevelopment ? true : false,
+    maximizable: false,
+    fullscreenable: false,
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true,
