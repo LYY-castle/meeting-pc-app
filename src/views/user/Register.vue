@@ -7,7 +7,12 @@
       </a-form-model-item>
 
       <a-form-model-item label="验证码" prop="validateCode">
-        <a-input v-model="form.validateCode" placeholder="请输入验证码" :disabled="disabledCode" maxLength="6">
+        <a-input
+          v-model="form.validateCode"
+          placeholder="请输入验证码"
+          :disabled="disabledCode"
+          :maxLength="6"
+        >
           <div slot="addonAfter" @click="getPhoneCode" v-if="disabledCode">
             <span>获取验证码</span>
           </div>
@@ -43,10 +48,11 @@
 
 <script>
 import PageHeader from '@/components/Header'
-import { regexMap } from '@/utils/validate.js'
+import { regexMap } from '@/utils/validate'
 import Crypto from '@/utils/crypto'
 import store from '@/store'
-import request from '@/api/index.js'
+import { request } from '@/api'
+
 export default {
   name: 'Register',
   data() {
@@ -61,7 +67,6 @@ export default {
       pageTitle: '新用户注册',
       deadline: 0,
       disabledCode: true,
-      layout: 'vertical',
       form: {
         type: 1,
         phone: '',
@@ -121,7 +126,6 @@ export default {
               request({ ...this.api.register, params }).then(res => {
                 if (res.success) {
                   store.dispatch('setToken', res.headers['authorization'])
-
                   store.commit('SET_NAME', res.data.name)
                   resolve()
                 } else {

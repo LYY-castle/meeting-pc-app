@@ -1,8 +1,9 @@
 <template>
   <div class="LoginContent">
     <div class="centerContetn">
-      <!-- <a-avatar :size="150" :src="LOGO" /> -->
-      <div>睿云会议</div>
+      <!-- <a-avatar :size="50" :src="LOGO" /> -->
+      <img :src="LOGO" alt="" width="100" />
+      <div class="logoText"><span>睿</span><span>云</span><span>会</span><span>议</span></div>
       <div>Wise2c Meeting</div>
       <a-button type="primary" block class="m-t-80" @click="joinMeeting">加入会议</a-button>
       <a-button block class="m-t-15" @click="loginOrRegister">登录 / 注册</a-button>
@@ -11,7 +12,7 @@
 </template>
 
 <script>
-import LOGO from '@/assets/images/wise2c.png'
+import LOGO from '@/assets/images/wise2c.svg'
 
 export default {
   name: 'Login',
@@ -23,7 +24,7 @@ export default {
   methods: {
     // 加入会议
     joinMeeting() {
-      window.open(window.location.href + 'join-meeting', '_blank', 'resizable=no, width=375')
+      window.open(window.location.origin + '/#/join-meeting', '_blank', 'resizable=no, width=375')
     },
 
     // 登录/注册
@@ -50,6 +51,13 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .logoText {
+      width: 100px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 800;
+    }
   }
 }
 </style>

@@ -3,23 +3,31 @@
     <page-header :left="true"></page-header>
     <div class="text m-t-30">
       <span class="leftText">{{ leftText }}</span>
-      <span class="rightText" @click="toggleLoginMethod">{{ rightText }}<a-icon type="right"/></span>
+      <span class="rightText" @click="toggleLoginMethod">
+        {{ rightText }}
+        <a-icon type="right" />
+      </span>
     </div>
-    <a-form-model :layout="form.layout" :model="form" class="m-t-50">
+    <a-form-model layout="vertical" ref="form" :model="form" class="m-t-50" :rules="rules">
       <a-row>
         <a-col>
-          <a-form-model-item label="手机号">
+          <a-form-model-item label="手机号" prop="phone">
             <a-input v-model="form.phone" placeholder="请输入手机号" />
           </a-form-model-item>
         </a-col>
         <a-col>
-          <a-form-model-item label="密码" v-if="!loginByCode">
-            <a-input v-model="form.pwd" placeholder="请输入密码" />
+          <a-form-model-item label="密码" v-if="!loginByCode" prop="password">
+            <a-input v-model="form.password" placeholder="请输入密码" />
           </a-form-model-item>
         </a-col>
         <a-col>
-          <a-form-model-item label="验证码" v-if="loginByCode">
-            <a-input v-model="form.pwd" placeholder="请输入验证码" :disabled="disabledCode">
+          <a-form-model-item label="验证码" v-if="loginByCode" prop="validateCode">
+            <a-input
+              v-model="form.validateCode"
+              placeholder="请输入验证码"
+              :disabled="disabledCode"
+              :maxLength="6"
+            >
               <div slot="addonAfter" @click="getPhoneCode" v-if="disabledCode">
                 <span>获取验证码</span>
               </div>
@@ -46,10 +54,11 @@
 
 <script>
 import PageHeader from '@/components/Header'
-import { regexMap } from '@/utils/validate.js'
+import { regexMap } from '@/utils/validate'
 import Crypto from '@/utils/crypto'
 import store from '@/store'
-import request from '@/api/index.js'
+import { request } from '@/api'
+
 export default {
   name: 'Register',
   data() {
@@ -112,9 +121,7 @@ export default {
             return new Promise(resolve => {
               request({ ...this.api.login, params }).then(res => {
                 if (res.success) {
-                  console.log(res.dta)
-                  store.dispatch('setToken', res.headers['authorization'])
-                  store.commit('SET_NAME', res.name)
+                  store.commit('SET_NAME', res.data.name)
                   resolve()
                 } else {
                   this.$message.error(res.message)
@@ -132,8 +139,6 @@ export default {
       })
     },
     getPhoneCode() {
-      this.deadline = Date.now() + 60 * 1000
-      this.disabledCode = false
       const conditions = {
         conditions: [{ fild: 'phone', rule: 'eq', val: this.form.phone }],
         fieldName: 'phone',
@@ -145,6 +150,8 @@ export default {
       }
       request({ ...this.api.checkPhone, params: conditions }).then(res => {
         if (res.success) {
+          this.deadline = Date.now() + 60 * 1000
+          this.disabledCode = false
           request({ ...this.api.sendValidateCode, params }).then(code => {
             if (code.data.success) {
               this.$message.success('短信已发送')
