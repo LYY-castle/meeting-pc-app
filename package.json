@@ -1,12 +1,18 @@
 {
-  "name": "meeting-pc-web",
+  "name": "wise2c-meeting-pc",
   "version": "0.1.0",
+  "description": "睿云会议桌面版",
+  "author": "Wise2c Enterprise",
   "private": true,
   "scripts": {
     "electron:serve": "cross-env mode=dev vue-cli-service electron:serve",
     "electron:serve:prod": "cross-env mode=prod vue-cli-service electron:serve",
-    "electron:build": "cross-env mode=dev vue-cli-service electron:build",
-    "electron:build:prod": "cross-env mode=prod vue-cli-service electron:build"
+    "electron:build": "cross-env mode=dev vue-cli-service electron:build --mac",
+    "electron:build:win": "cross-env mode=prod vue-cli-service electron:build --win --x64",
+    "electron:build:prod": "cross-env mode=prod vue-cli-service electron:build --mac",
+    "electron:build:prod:win": "cross-env mode=prod vue-cli-service electron:build --win --x64",
+    "electron:generate-icons": "electron-icon-builder --input=./public/app.ico --output=build --flatten",
+    "postinstall": "electron-builder install-app-deps"
   },
   "main": "background.js",
   "dependencies": {
@@ -26,7 +32,7 @@
     "ant-design-vue": "^1.5.6",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
-    "electron": "^8.2.5",
+    "electron": "^8.3.0",
     "electron-chromedriver": "^8.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
