@@ -22,12 +22,7 @@
         </a-col>
         <a-col>
           <a-form-model-item label="验证码" v-if="loginByCode" prop="validateCode">
-            <a-input
-              v-model="form.validateCode"
-              placeholder="请输入验证码"
-              :disabled="disabledCode"
-              :maxLength="6"
-            >
+            <a-input v-model="form.validateCode" placeholder="请输入验证码" :disabled="disabledCode" :maxLength="6">
               <div slot="addonAfter" @click="getPhoneCode" v-if="disabledCode">
                 <span>获取验证码</span>
               </div>
@@ -56,7 +51,6 @@
 import PageHeader from '@/components/Header'
 import { regexMap } from '@/utils/validate'
 import Crypto from '@/utils/crypto'
-import store from '@/store'
 import { request } from '@/api'
 
 export default {
@@ -104,7 +98,6 @@ export default {
       this.$router.push('/register')
     },
     submitForm(formName) {
-      console.log(formName)
       this.$refs[formName].validate(valid => {
         if (valid) {
           const requestRegister = () => {
@@ -121,7 +114,7 @@ export default {
             return new Promise(resolve => {
               request({ ...this.api.login, params }).then(res => {
                 if (res.success) {
-                  store.commit('SET_NAME', res.data.name)
+                  this.$store.dispatch('setUserInfo', res.data)
                   resolve()
                 } else {
                   this.$message.error(res.message)

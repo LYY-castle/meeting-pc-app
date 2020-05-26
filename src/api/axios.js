@@ -11,7 +11,7 @@ let tokenExpiredErrorShowed = false
 
 // 创建 axios 实例
 const service = axios.create({
-  baseURL: process.env.BASE_API, // api base_url
+  baseURL: '/api', // api base_url
   timeout: constantCfg.API_TIMEOUT // 请求超时时间
 })
 

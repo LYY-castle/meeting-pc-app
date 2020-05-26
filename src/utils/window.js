@@ -12,7 +12,7 @@ export function createChildWindow({
   minHeight,
   maxWidth,
   maxHeight,
-  resizable = false,
+  resizable = true,
   movable = true,
   minimizable = false,
   maximizable = false,
@@ -20,6 +20,7 @@ export function createChildWindow({
   modal = false,
   closeCB = () => {} // 关闭窗口回调函数.
 }) {
+  const mainWin = remote.getCurrentWindow()
   let newWin = new remote.BrowserWindow({
     title,
     width,
@@ -34,7 +35,7 @@ export function createChildWindow({
     maximizable,
     fullscreenable,
     modal,
-    parent: remote.getCurrentWindow(),
+    parent: mainWin,
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true,
@@ -50,7 +51,9 @@ export function createChildWindow({
   })
 
   newWin.on('closed', () => {
-    isFunction(closeCB) && closeCB()
+    isFunction(closeCB) && closeCB(mainWin)
     newWin = null
   })
+
+  return newWin
 }

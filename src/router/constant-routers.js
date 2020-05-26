@@ -2,7 +2,7 @@
 
 export default [
   {
-    path: '/',
+    path: '/index',
     name: 'Index',
     component: () => import(/* webpackChunkName: "login" */ '@/views/user/Index'),
     meta: {
@@ -32,6 +32,11 @@ export default [
     path: '/scheduled-meeting',
     component: () => import(/* webpackChunkName: "join-meeting" */ '@/views/user/ScheduledMeeting')
   },
+  {
+    name: 'CopyWindow',
+    path: '/copy-window',
+    component: () => import(/* webpackChunkName: "copy-window" */ '@/components/CopyWindow')
+  },
   // {
   //   name: 'hello',
   //   path: '/hello',
@@ -44,7 +49,7 @@ export default [
   // },
   {
     name: 'Home',
-    path: '/home',
+    path: '/',
     component: () => import(/* webpackChunkName: "home" */ '@/views/user/Home')
   },
   {
