@@ -1,9 +1,7 @@
-// import BlankLayout from '@/components/layouts/BlankLayout'
-
 export default [
   {
+    path: '/index',
     name: 'Index',
-    path: '/',
     component: () => import(/* webpackChunkName: "login" */ '@/views/user/Index')
   },
   {
@@ -27,8 +25,13 @@ export default [
     component: () => import(/* webpackChunkName: "join-meeting" */ '@/views/user/ScheduledMeeting')
   },
   {
+    name: 'CopyWindow',
+    path: '/copy-window',
+    component: () => import(/* webpackChunkName: "copy-window" */ '@/components/CopyWindow')
+  },
+  {
     name: 'Home',
-    path: '/home',
+    path: '/',
     component: () => import(/* webpackChunkName: "home" */ '@/views/user/Home')
   },
   {

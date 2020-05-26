@@ -50,7 +50,6 @@
 import PageHeader from '@/components/Header'
 import { regexMap } from '@/utils/validate'
 import Crypto from '@/utils/crypto'
-import store from '@/store'
 import { request } from '@/api'
 
 export default {
@@ -125,8 +124,7 @@ export default {
             return new Promise(resolve => {
               request({ ...this.api.register, params }).then(res => {
                 if (res.success) {
-                  store.dispatch('setToken', res.headers['authorization'])
-                  store.commit('SET_NAME', res.data.name)
+                  this.$store.dispatch('setUserInfo', res.data)
                   resolve()
                 } else {
                   this.$message.error(res.message)

@@ -49,10 +49,25 @@ export default {
 .mainContent {
   box-sizing: border-box;
   overflow: hidden;
-  overflow-y: scroll;
   width: 100%;
   height: 100%;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+  .scrollContent {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+  .positionButton {
+    background: #fff;
+    border: none;
+    border-top: 1px solid #eee;
+    padding: 10px 20px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
 }
 </style>
