@@ -2,7 +2,7 @@
   <div class="LoginContent">
     <div class="centerContetn">
       <!-- <a-avatar :size="50" :src="LOGO" /> -->
-      <img :src="LOGO" alt width="100" />
+      <img :src="LOGO" alt width="200" />
       <div class="logoText">
         <span>睿</span>
         <span>云</span>
@@ -12,6 +12,7 @@
       <div>Wise2c Meeting</div>
       <a-button type="primary" block class="m-t-80" @click="joinMeeting">加入会议</a-button>
       <a-button block class="m-t-15" @click="loginOrRegister">登录 / 注册</a-button>
+      <a-button block class="m-t-15" @click="shareScreen">分享屏幕</a-button>
     </div>
   </div>
 </template>
@@ -38,6 +39,16 @@ export default {
     // 登录/注册
     loginOrRegister() {
       this.$router.push('/login')
+    },
+
+    // 分享屏幕
+    shareScreen() {
+      createChildWindow({
+        title: '选择共享内容',
+        width: 736,
+        height: 650,
+        url: '/choose-share-screen'
+      })
     }
   }
 }
@@ -52,7 +63,7 @@ export default {
     min-width: 300px;
     height: auto;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -60,7 +71,7 @@ export default {
     justify-content: center;
     align-items: center;
     .logoText {
-      width: 100px;
+      width: 200px;
       display: flex;
       justify-content: space-between;
       font-size: 18px;

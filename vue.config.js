@@ -26,7 +26,9 @@ module.exports = {
   },
   parallel: os.cpus().length > 1,
   chainWebpack: config => {
-    config.resolve.alias.set('@', resolve('src'))
+    config.resolve.alias
+      .set('@', resolve('src'))
+      .set('@public', resolve('public'))
 
     config.plugin('define').tap(args => {
       keys(envConfig[process.env.mode]).forEach(key => {
