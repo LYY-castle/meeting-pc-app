@@ -18,7 +18,7 @@ export default {
     })
   },
   created() {
-    console.log(re)
+
   },
   methods: {
     // 查询会议详情
