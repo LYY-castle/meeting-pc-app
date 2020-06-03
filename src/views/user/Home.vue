@@ -83,24 +83,17 @@
         </a-row>
       </div>
       <div ref="cardList">
-        <a-card
-          :bordered="false"
-          class="cardList"
-          v-if="meetingList.length>0"
-          title="预定会议"
-          hoverable
-        >
-          <a-card-grid
-            style="width:100%;text-align:left"
-            v-for="(meet,index) in meetingList"
-            :key="index"
-          >
+        <a-card :bordered="false" class="cardList" v-if="meetingList.length > 0" title="预定会议" hoverable>
+          <a-card-grid style="width:100%;text-align:left" v-for="(meet, index) in meetingList" :key="index">
             <div class="singleCard">
               <div class="left">
-                {{ new Date(meet.appointStartTime).getTime() }}
                 <div>{{ moment(meet.appointStartTime).format('YYYY-MM-DD') }}</div>
                 <div class="c-gray">
-                  <span>{{ moment(meet.appointStartTime).format('HH:mm:ss') }}--{{ moment(meet.appointEndTime).format('HH:mm:ss') }}</span>
+                  <span
+                    >{{ moment(meet.appointStartTime).format('HH:mm:ss') }}--{{
+                      moment(meet.appointEndTime).format('HH:mm:ss')
+                    }}</span
+                  >
                 </div>
                 <div class="bold">{{ meet.subject }}</div>
               </div>
@@ -108,15 +101,12 @@
                 <a-col>
                   <a-button type="primary">进入会议</a-button>
                 </a-col>
-                <a-col
-                  class="m-t-5"
-                  v-if="new Date(meet.appointStartTime).getTime()-new Date().getTime()>0"
-                >
+                <a-col class="m-t-5" v-if="new Date(meet.appointStartTime).getTime() - new Date().getTime() > 0">
                   <a-popover trigger="click">
                     <template slot="content">
-                      <a-button type="link" block @click="copyWin(meet.id)">复制邀请</a-button>
-                      <a-button type="link" block @click="editeWin(meet.id)">编辑会议</a-button>
-                      <a-button type="link" block @click="cancleWin(meet.id)">取消会议</a-button>
+                      <a-button type="link" @click="copyWin(meet.id)">复制邀请</a-button>
+                      <a-button type="link" @click="editeWin(meet.id)">编辑会议</a-button>
+                      <a-button type="link" @click="deleteMeeting(meet.id)">取消会议</a-button>
                     </template>
                     <a-button>更多操作</a-button>
                   </a-popover>
@@ -194,18 +184,26 @@ export default {
           url: '/users/logout',
           method: 'get'
         },
+        // 修改用户信息
         updateUserInfo: {
           url: '/users',
           method: 'patch'
         },
+        // 获取预定会议List
         meetingList: {
           url: '/meetings',
           method: 'get'
         },
+        // 开始会议
         startMeeting: {
           url: '/meetings/start',
           method: 'post'
         },
+        // 取消会议
+        // cancelMeeting: {
+        //   url
+        // },
+        // 删除会议
         deleteMeeting: {
           url: '/meetings/{ids}',
           method: 'delete'
@@ -339,6 +337,11 @@ export default {
       createChildWindow({
         // width: 380,
         url: '/copy-window?meetId=' + meetId
+      })
+    },
+    editeWin(meetId) {
+      createChildWindow({
+        url: '/scheduled-meeting?meetId=' + meetId
       })
     },
     afterAppointMeeting() {

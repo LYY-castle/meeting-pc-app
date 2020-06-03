@@ -1,6 +1,5 @@
 <template>
   <div class="mainContent">
-    {{ this.userInfo.id }}
     <page-header :left="false" :pageTitle="pageTitle"></page-header>
     <a-form-model layout="vertical" :model="form" class="m-t-50" :rules="rules" ref="form">
       <a-form-model-item label="会议号" prop="code">

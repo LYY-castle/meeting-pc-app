@@ -16,15 +16,16 @@
       <a-form-model-item label="结束时间" prop="appointEndTime">
         <a-date-picker show-time v-model="form.appointEndTime"></a-date-picker>
       </a-form-model-item>
-      <a-form-model-item label="入会密码" :prop="isOpenPassword?'password':''">
+      <a-form-model-item label="入会密码" :prop="isOpenPassword ? 'password' : ''">
         <a-checkbox v-model="isOpenPassword">开启会议密码</a-checkbox>
         <a-input
           v-model="form.password"
-          placeholder="请输入4~6位数字密码"
+          placeholder="4~6位数字"
           v-if="isOpenPassword"
           type="tel"
           :maxLength="6"
           :minLength="4"
+          style="width:150px"
         />
       </a-form-model-item>
       <a-form-model-item label="会议设置">
@@ -62,6 +63,7 @@ export default {
     return {
       pageTitle: '预定会议',
       isOpenPassword: false,
+      meetId: null,
       form: {
         subject: this.meetingSubject,
         type: '0',
@@ -85,6 +87,16 @@ export default {
         scheduledMeeting: {
           url: '/meetings',
           method: 'post'
+        },
+
+        // 查询预定的会议内容
+        searchMeeting: {
+          url: '/meetings/{ids}',
+          method: 'get'
+        },
+        editeMeeting: {
+          url: '/meetings',
+          method: 'patch'
         }
       }
     }
@@ -98,6 +110,24 @@ export default {
       return meeting
     }
   },
+  created() {
+    this.meetId = this.$route.query.meetId
+    if (this.meetId) {
+      request({ ...this.api.searchMeeting, urlReplacements: [{ substr: '{ids}', replacement: this.meetId }] }).then(
+        res => {
+          if (res.success) {
+            res.data.isJoinMute = res.data.isJoinMute === 1 ? true : false
+            res.data.joinType = res.data.joinType === 1 ? true : false
+            res.data.type = String(res.data.type)
+            if (res.data.password !== null) {
+              this.isOpenPassword = true
+            }
+            this.form = res.data
+          }
+        }
+      )
+    }
+  },
   methods: {
     moment,
     scheduledMeeting(formname) {
@@ -107,13 +137,27 @@ export default {
           this.form.appointEndTime = moment(this.form.appointEndTime).format('YYYY-MM-DD HH:mm:ss')
           this.form.isJoinMute = this.form.isJoinMute ? 1 : 0
           this.form.joinType = this.form.joinType ? 1 : 0
-          request({ ...this.api.scheduledMeeting, params: this.form }).then(res => {
-            if (res.success) {
-              remote.getCurrentWindow().close()
-            } else {
-              this.$message.error(res.message)
-            }
-          })
+          if (!this.isOpenPassword) {
+            delete this.form.password
+          }
+          console.log(this.form)
+          if (this.meetId) {
+            request({ ...this.api.editeMeeting, params: this.form }).then(res => {
+              if (res.success) {
+                remote.getCurrentWindow().close()
+              } else {
+                this.$message.error(res.message)
+              }
+            })
+          } else {
+            request({ ...this.api.scheduledMeeting, params: this.form }).then(res => {
+              if (res.success) {
+                remote.getCurrentWindow().close()
+              } else {
+                this.$message.error(res.message)
+              }
+            })
+          }
         }
       })
     }
